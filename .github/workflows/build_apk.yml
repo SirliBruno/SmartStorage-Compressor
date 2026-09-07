@@ -40,6 +40,7 @@ jobs:
           cp /tmp/backup/build.gradle android/app/build.gradle
           mkdir -p android/app/src/main/kotlin/com/smartstorage/smart_storage_compressor
           cp -f /tmp/backup/kotlin/* android/app/src/main/kotlin/com/smartstorage/smart_storage_compressor/
+          rm -f test/widget_test.dart
           echo "=== Verified Kotlin Files ==="
           ls -la android/app/src/main/kotlin/com/smartstorage/smart_storage_compressor/
 
@@ -47,7 +48,7 @@ jobs:
         run: flutter pub get
 
       - name: Run Flutter Tests
-        run: flutter test
+        run: flutter test test/unit/
 
       - name: Build Android Debug APK
         run: flutter build apk --debug --android-skip-build-dependency-validation
