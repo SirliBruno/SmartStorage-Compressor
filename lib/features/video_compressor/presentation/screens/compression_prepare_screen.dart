@@ -28,7 +28,7 @@ class CompressionPrepareScreen extends ConsumerStatefulWidget {
 class _CompressionPrepareScreenState extends ConsumerState<CompressionPrepareScreen> {
   VideoAsset? _video;
   bool _isLoading = false;
-  CompressionPresetType _selectedPreset = CompressionPresetType.whatsAppFast;
+  PresetType _selectedPreset = PresetType.whatsAppFast;
 
   @override
   void initState() {
@@ -201,28 +201,28 @@ class _CompressionPrepareScreenState extends ConsumerState<CompressionPrepareScr
               ),
               const SizedBox(height: 12),
               _buildPresetCard(
-                type: CompressionPresetType.whatsAppFast,
+                type: PresetType.whatsAppFast,
                 title: l10n.presetWhatsApp,
                 desc: l10n.presetWhatsAppDesc,
                 isPro: false,
               ),
               const SizedBox(height: 10),
               _buildPresetCard(
-                type: CompressionPresetType.emailReady,
+                type: PresetType.emailReady,
                 title: l10n.presetEmail,
                 desc: l10n.presetEmailDesc,
                 isPro: false,
               ),
               const SizedBox(height: 10),
               _buildPresetCard(
-                type: CompressionPresetType.maxSpaceSaver,
+                type: PresetType.maxSpaceSaver,
                 title: l10n.presetMaxSaver,
                 desc: l10n.presetMaxSaverDesc,
                 isPro: true,
               ),
               const SizedBox(height: 10),
               _buildPresetCard(
-                type: CompressionPresetType.custom,
+                type: PresetType.customSize,
                 title: l10n.presetCustom,
                 desc: l10n.presetCustomDesc,
                 isPro: true,
@@ -278,7 +278,7 @@ class _CompressionPrepareScreenState extends ConsumerState<CompressionPrepareScr
   }
 
   Widget _buildPresetCard({
-    required CompressionPresetType type,
+    required PresetType type,
     required String title,
     required String desc,
     required bool isPro,

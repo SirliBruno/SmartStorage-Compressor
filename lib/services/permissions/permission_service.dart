@@ -1,8 +1,14 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:photo_manager/photo_manager.dart';
 import '../../core/utils/logger.dart';
 import '../../features/onboarding/domain/models/permission_models.dart';
 
 export '../../features/onboarding/domain/models/permission_models.dart';
+
+/// Global provider for PermissionService.
+final permissionServiceProvider = Provider<PermissionService>((ref) {
+  return PhotoManagerPermissionService();
+});
 
 /// Service abstraction managing media access permissions for iOS and Android.
 abstract class PermissionService {

@@ -91,3 +91,7 @@ class CompressionConfig {
     );
   }
 }
+
+/// Backward compatibility alias
+typedef CompressionPresetType = PresetType;
+

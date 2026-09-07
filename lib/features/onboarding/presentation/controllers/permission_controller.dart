@@ -32,11 +32,6 @@ class PermissionNotifier extends StateNotifier<MediaPermissionState> {
   }
 }
 
-/// Global provider for PermissionService.
-final permissionServiceProvider = Provider<PermissionService>((ref) {
-  return PhotoManagerPermissionService();
-});
-
 /// Global provider for permission state.
 final permissionProvider = StateNotifierProvider<PermissionNotifier, MediaPermissionState>((ref) {
   final service = ref.watch(permissionServiceProvider);

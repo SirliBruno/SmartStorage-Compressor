@@ -6,7 +6,7 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/widgets/app_button.dart';
 import '../../../../core/widgets/app_card.dart';
 import '../controllers/quota_controller.dart';
-import '../../onboarding/presentation/controllers/onboarding_controller.dart';
+import '../../../onboarding/presentation/controllers/onboarding_controller.dart';
 
 /// Monetization Paywall Screen displaying Annual with Trial & Lifetime packages.
 class PaywallScreen extends ConsumerStatefulWidget {
