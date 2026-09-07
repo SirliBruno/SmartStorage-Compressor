@@ -4,7 +4,7 @@ import '../localization/app_localizations.dart';
 /// Ergonomic BuildContext extensions for UI components.
 extension ContextExtensions on BuildContext {
   /// Access current localization delegate.
-  AppLocalizations get l10n => AppLocalizations.of(this);
+  AppLocalizations get l10n => AppLocalizations.of(this)!;
 
   /// Access ThemeData.
   ThemeData get theme => Theme.of(this);
@@ -25,4 +25,9 @@ extension ContextExtensions on BuildContext {
 
   /// Padding / safe area insets.
   EdgeInsets get padding => MediaQuery.paddingOf(this);
+}
+
+/// Convenience extension on AppLocalizations for locale checks.
+extension AppLocalizationsX on AppLocalizations {
+  bool get isArabic => localeName.startsWith('ar');
 }

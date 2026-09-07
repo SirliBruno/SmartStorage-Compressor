@@ -115,7 +115,7 @@ class VideoLibraryNotifier extends StateNotifier<VideoLibraryState> {
         );
       }
     } catch (e, stack) {
-      AppLogger.error('Failed to load video library: $e', error: e, stackTrace: stack);
+      AppLogger.error('Failed to load video library: $e', e, stack);
       state = state.copyWith(
         status: VideoLibraryStatus.error,
         errorMessage: e.toString(),
