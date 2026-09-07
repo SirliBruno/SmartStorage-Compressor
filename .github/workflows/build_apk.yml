@@ -28,6 +28,17 @@ jobs:
           channel: 'stable'
           cache: true
 
+      - name: Configure Android Project Scaffold
+        run: |
+          mkdir -p /tmp/backup/kotlin
+          cp -r android/app/src/main/kotlin/* /tmp/backup/kotlin/
+          cp android/app/src/main/AndroidManifest.xml /tmp/backup/AndroidManifest.xml
+          rm -rf android
+          flutter create --platforms=android --org com.smartstorage .
+          cp /tmp/backup/AndroidManifest.xml android/app/src/main/AndroidManifest.xml
+          mkdir -p android/app/src/main/kotlin/com/smartstorage/compressor
+          cp -r /tmp/backup/kotlin/* android/app/src/main/kotlin/com/smartstorage/compressor/
+
       - name: Install Dependencies
         run: flutter pub get
 
