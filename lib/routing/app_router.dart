@@ -6,6 +6,8 @@ import '../features/onboarding/presentation/screens/scan_result_screen.dart';
 import '../features/dashboard/presentation/screens/dashboard_screen.dart';
 import '../features/video_compressor/presentation/screens/video_picker_screen.dart';
 import '../features/video_compressor/presentation/screens/compression_prepare_screen.dart';
+import '../features/video_compressor/presentation/screens/compression_screen.dart';
+import '../features/video_compressor/domain/models/compression_preset.dart';
 import '../features/video_compressor/domain/models/video_asset.dart';
 import '../features/screenshot_cleaner/presentation/screens/swipe_cleaner_screen.dart';
 import '../features/paywall/presentation/screens/paywall_screen.dart';
@@ -54,6 +56,20 @@ GoRouter createAppRouter({String initialLocation = '/onboarding'}) {
         },
       ),
       GoRoute(
+        path: '/video-compressor/compress',
+        builder: (context, state) {
+          final extra = state.extra as Map<String, dynamic>?;
+          if (extra != null && extra['video'] is VideoAsset) {
+            return CompressionScreen(
+              video: extra['video'] as VideoAsset,
+              preset: (extra['preset'] as CompressionPreset?) ?? CompressionPreset.whatsappFast,
+              customTargetSizeBytes: extra['customTargetSizeBytes'] as int?,
+            );
+          }
+          return const VideoPickerScreen();
+        },
+      ),
+      GoRoute(
         path: '/compressor',
         builder: (context, state) => const VideoPickerScreen(),
       ),
@@ -63,6 +79,20 @@ GoRouter createAppRouter({String initialLocation = '/onboarding'}) {
           final video = state.extra as VideoAsset?;
           final id = state.uri.queryParameters['id'] ?? video?.id ?? '';
           return CompressionPrepareScreen(assetId: id, initialVideo: video);
+        },
+      ),
+      GoRoute(
+        path: '/compressor/compress',
+        builder: (context, state) {
+          final extra = state.extra as Map<String, dynamic>?;
+          if (extra != null && extra['video'] is VideoAsset) {
+            return CompressionScreen(
+              video: extra['video'] as VideoAsset,
+              preset: (extra['preset'] as CompressionPreset?) ?? CompressionPreset.whatsappFast,
+              customTargetSizeBytes: extra['customTargetSizeBytes'] as int?,
+            );
+          }
+          return const VideoPickerScreen();
         },
       ),
       // Screenshot Cleaner (primary & alias)

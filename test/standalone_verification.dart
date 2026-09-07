@@ -105,10 +105,11 @@ void main() {
 
   // CompressionResult model test
   final resultModel = CompressionResult(
+    success: true,
     originalPath: '/input.mp4',
-    compressedPath: '/output.mp4',
-    originalSizeBytes: origBytes,
-    compressedSizeBytes: compBytes,
+    outputPath: '/output.mp4',
+    originalSize: origBytes,
+    compressedSize: compBytes,
     duration: const Duration(seconds: 45),
     processingTime: const Duration(seconds: 4),
   );
@@ -157,7 +158,11 @@ void main() {
   assertTest('WhatsApp Fast preset targets 720p (1280x720)', waPreset.targetResolutionWidth == 1280 && waPreset.targetResolutionHeight == 720);
   assertTest('WhatsApp Fast is available for Free tier', waPreset.isProOnly == false);
 
-  final maxPreset = CompressionConfig.maxSpaceSaver(targetBitrateBps: 1500000);
+  final maxPreset = CompressionConfig.maxSpaceSaver(
+    targetBitrateBps: 1500000,
+    width: 1920,
+    height: 1080,
+  );
   assertTest('Maximum Space Saver preset uses HEVC (H.265)', maxPreset.useHevc == true);
   assertTest('Maximum Space Saver preset targets 1080p', maxPreset.targetResolutionWidth == 1920 && maxPreset.targetResolutionHeight == 1080);
   assertTest('Maximum Space Saver is Pro only', maxPreset.isProOnly == true);

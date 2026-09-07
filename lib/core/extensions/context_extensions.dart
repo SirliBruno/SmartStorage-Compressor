@@ -27,7 +27,17 @@ extension ContextExtensions on BuildContext {
   EdgeInsets get padding => MediaQuery.paddingOf(this);
 }
 
-/// Convenience extension on AppLocalizations for locale checks.
+/// Convenience extension on AppLocalizations for locale checks and Sprint 04 engine strings.
 extension AppLocalizationsX on AppLocalizations {
   bool get isArabic => localeName.startsWith('ar');
+
+  String get compressionCompleted => isArabic ? 'اكتمل الضغط بنجاح' : 'Compression Completed';
+  String get compressionCancelled => isArabic ? 'تم إلغاء الضغط' : 'Compression Cancelled';
+  String get compressionFailed => isArabic ? 'فشل الضغط' : 'Compression Failed';
+  String get preparingCompression => isArabic ? 'جاري التحضير للضغط...' : 'Preparing compression...';
+  String get calculating => isArabic ? 'جاري الحساب...' : 'Calculating...';
+  String get compressionCancelledDesc => isArabic ? 'تم إيقاف عملية الضغط وحذف الملف المؤقت بأمان.' : 'The compression process was aborted and temporary files were cleaned up.';
+  String get tryAgain => isArabic ? 'إعادة المحاولة' : 'Try Again';
+  String get insufficientStorageTitle => isArabic ? 'مساحة التخزين غير كافية' : 'Insufficient Storage';
+  String get insufficientStorageMessage => isArabic ? 'لا توجد مساحة كافية على جهازك لضغط هذا الفيديو بأمان.' : 'There is not enough free space on your device to compress this video safely.';
 }

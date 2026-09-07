@@ -11,6 +11,9 @@ extension FileSizeExtensions on int {
     return '${size.toStringAsFixed(i == 0 ? 0 : decimals)} ${suffixes[i]}';
   }
 
+  /// Backward-compatibility alias for formatBytes
+  String formatFileSize({int decimals = 1}) => formatBytes(decimals: decimals);
+
   /// Calculates percentage saved compared to a smaller/compressed byte size.
   /// Example: 1000.calculateSavedPercentage(200) -> 80.0
   double calculateSavedPercentage(int compressedBytes) {

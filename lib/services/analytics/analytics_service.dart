@@ -1,3 +1,4 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/utils/logger.dart';
 
 /// Privacy-First Analytics Service.
@@ -29,6 +30,9 @@ abstract class AnalyticsService {
     required String planId,
     required String currency,
   });
+
+  /// Flexible event tracking
+  void track(String event, [Map<String, dynamic>? properties]);
 }
 
 /// Lightweight privacy-first local analytics implementation.
@@ -88,4 +92,15 @@ class LocalPrivacyAnalyticsService implements AnalyticsService {
       '[Analytics] subscription_started (plan_id: $planId, currency: $currency)',
     );
   }
+
+  @override
+  void track(String event, [Map<String, dynamic>? properties]) {
+    final propsStr = properties != null ? ' $properties' : '';
+    AppLogger.info('[Analytics] $event$propsStr');
+  }
 }
+
+/// Global provider for privacy-first analytics
+final analyticsServiceProvider = Provider<AnalyticsService>((ref) {
+  return LocalPrivacyAnalyticsService();
+});

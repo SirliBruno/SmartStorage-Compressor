@@ -1,13 +1,24 @@
-enum PresetType {
-  whatsAppFast,
+﻿/// Available video compression presets defined by PRD Section 5.1.
+enum CompressionPreset {
+  whatsappFast,
   emailReady,
-  maxSpaceSaver,
-  customSize,
+  maximumSpaceSaver,
+  customTargetSize;
+
+  // Compatibility aliases
+  static const CompressionPreset whatsAppFast = CompressionPreset.whatsappFast;
+  static const CompressionPreset maxSpaceSaver = CompressionPreset.maximumSpaceSaver;
+  static const CompressionPreset customSize = CompressionPreset.customTargetSize;
+  static const CompressionPreset custom = CompressionPreset.customTargetSize;
 }
+
+/// Backwards compatibility type aliases
+typedef PresetType = CompressionPreset;
+typedef CompressionPresetType = CompressionPreset;
 
 /// Domain configuration detailing exact video compression parameters.
 class CompressionConfig {
-  final PresetType presetType;
+  final CompressionPreset presetType;
   final int targetResolutionWidth;
   final int targetResolutionHeight;
   final int targetBitrateBps;
@@ -31,7 +42,7 @@ class CompressionConfig {
     int targetBytes = 16 * 1024 * 1024,
   }) {
     return CompressionConfig(
-      presetType: PresetType.whatsAppFast,
+      presetType: CompressionPreset.whatsappFast,
       targetResolutionWidth: 1280,
       targetResolutionHeight: 720,
       targetBitrateBps: targetBitrateBps,
@@ -48,7 +59,7 @@ class CompressionConfig {
     required int height,
   }) {
     return CompressionConfig(
-      presetType: PresetType.emailReady,
+      presetType: CompressionPreset.emailReady,
       targetResolutionWidth: width,
       targetResolutionHeight: height,
       targetBitrateBps: targetBitrateBps,
@@ -58,17 +69,20 @@ class CompressionConfig {
     );
   }
 
-  /// Factory helper for Maximum Space Saver Preset (1080p HEVC/H.265, 60-80% savings).
+  /// Factory helper for Maximum Space Saver Preset (HEVC, 1080p target).
   factory CompressionConfig.maxSpaceSaver({
     required int targetBitrateBps,
+    required int width,
+    required int height,
+    bool useHevc = true,
   }) {
     return CompressionConfig(
-      presetType: PresetType.maxSpaceSaver,
-      targetResolutionWidth: 1920,
-      targetResolutionHeight: 1080,
+      presetType: CompressionPreset.maximumSpaceSaver,
+      targetResolutionWidth: width,
+      targetResolutionHeight: height,
       targetBitrateBps: targetBitrateBps,
-      useHevc: true, // Hardware H.265 mandatory
-      isProOnly: true, // Pro feature
+      useHevc: useHevc,
+      isProOnly: true,
     );
   }
 
@@ -81,17 +95,13 @@ class CompressionConfig {
     bool useHevc = false,
   }) {
     return CompressionConfig(
-      presetType: PresetType.customSize,
+      presetType: CompressionPreset.customTargetSize,
       targetResolutionWidth: width,
       targetResolutionHeight: height,
       targetBitrateBps: targetBitrateBps,
       useHevc: useHevc,
       customTargetSizeBytes: customTargetSizeBytes,
-      isProOnly: true, // Pro feature
+      isProOnly: true,
     );
   }
 }
-
-/// Backward compatibility alias
-typedef CompressionPresetType = PresetType;
-

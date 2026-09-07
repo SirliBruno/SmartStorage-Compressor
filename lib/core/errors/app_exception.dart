@@ -4,7 +4,7 @@ sealed class AppException implements Exception {
   final Object? cause;
   final StackTrace? stackTrace;
 
-  const AppException(this.message, {this.cause, this.stackTrace});
+  const AppException({this.message = '', this.cause, this.stackTrace});
 
   @override
   String toString() => 'AppException: $message (cause: $cause)';

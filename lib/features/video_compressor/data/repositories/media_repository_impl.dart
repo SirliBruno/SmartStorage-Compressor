@@ -1,4 +1,5 @@
 import 'dart:typed_data';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:photo_manager/photo_manager.dart';
 import '../../../../core/utils/logger.dart';
 import '../../../../services/media/thumbnail_service.dart';
@@ -134,3 +135,8 @@ class MediaRepositoryImpl implements MediaRepository {
     }
   }
 }
+
+/// Global provider for media repository
+final mediaRepositoryProvider = Provider<MediaRepository>((ref) {
+  return MediaRepositoryImpl();
+});

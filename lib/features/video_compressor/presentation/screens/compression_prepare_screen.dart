@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/extensions/context_extensions.dart';
+import '../../../../core/extensions/file_size_extensions.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
 import '../../domain/models/compression_preset.dart';
@@ -29,6 +30,7 @@ class _CompressionPrepareScreenState extends ConsumerState<CompressionPrepareScr
   VideoAsset? _video;
   bool _isLoading = false;
   PresetType _selectedPreset = PresetType.whatsAppFast;
+  double _customPercentage = 0.5;
 
   @override
   void initState() {
@@ -228,6 +230,56 @@ class _CompressionPrepareScreenState extends ConsumerState<CompressionPrepareScr
                 isPro: true,
               ),
 
+              if (_selectedPreset == PresetType.customSize) ...[
+                const SizedBox(height: 12),
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: AppColors.cardBackground,
+                    borderRadius: BorderRadius.circular(14),
+                    border: Border.all(color: AppColors.primary.withOpacity(0.4)),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Target Size (${(_customPercentage * 100).toInt()}%)',
+                            style: AppTypography.bodyMedium.copyWith(
+                              color: AppColors.textPrimary,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          Text(
+                            (video.sizeInBytes * _customPercentage).toInt().formatBytes(),
+                            style: AppTypography.titleSmall.copyWith(
+                              color: AppColors.accentCyan,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SliderTheme(
+                        data: SliderTheme.of(context).copyWith(
+                          activeTrackColor: AppColors.primary,
+                          inactiveTrackColor: AppColors.border,
+                          thumbColor: AppColors.accentCyan,
+                        ),
+                        child: Slider(
+                          value: _customPercentage,
+                          min: 0.1,
+                          max: 0.9,
+                          divisions: 16,
+                          onChanged: (val) => setState(() => _customPercentage = val),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+
               const SizedBox(height: 32),
 
               // 5. CTA Button
@@ -240,14 +292,17 @@ class _CompressionPrepareScreenState extends ConsumerState<CompressionPrepareScr
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
                   ),
                   onPressed: () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text(
-                          'Video inspected successfully! Compression engine executes in Sprint 04.',
-                        ),
-                        backgroundColor: AppColors.cardBackground,
-                        behavior: SnackBarBehavior.floating,
-                      ),
+                    final targetBytes = _selectedPreset == PresetType.customSize
+                        ? (video.sizeInBytes * _customPercentage).toInt()
+                        : null;
+
+                    context.push(
+                      '/video-compressor/compress',
+                      extra: {
+                        'video': video,
+                        'preset': _selectedPreset,
+                        'customTargetSizeBytes': targetBytes,
+                      },
                     );
                   },
                   child: Text(

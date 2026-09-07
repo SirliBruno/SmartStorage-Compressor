@@ -39,6 +39,11 @@ class VideoAsset {
   /// Guaranteed non-null persistent identifier across PhotoKit/MediaStore.
   String get effectiveId => localIdentifier ?? id;
 
+  /// Compatibility aliases
+  int get resolutionWidth => width;
+  int get resolutionHeight => height;
+  int get sizeInBytes => fileSizeBytes;
+
   /// Human-readable resolution label (e.g., "4K", "2K", "1080p", "720p", "480p").
   /// Orientation-agnostic: correctly labels vertical/portrait and horizontal/landscape videos.
   String get resolutionLabel {
