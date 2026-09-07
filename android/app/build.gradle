@@ -24,7 +24,7 @@ if (flutterVersionName == null) {
 
 android {
     namespace "com.smartstorage.smart_storage_compressor"
-    compileSdk 34
+    compileSdk 35
     ndkVersion flutter.ndkVersion
 
     compileOptions {
@@ -43,7 +43,7 @@ android {
     defaultConfig {
         applicationId "com.smartstorage.smart_storage_compressor"
         minSdkVersion 24
-        targetSdkVersion 34
+        targetSdkVersion 35
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
