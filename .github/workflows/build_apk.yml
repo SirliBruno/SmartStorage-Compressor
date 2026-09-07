@@ -43,11 +43,11 @@ jobs:
           echo "=== Verified Kotlin Files ==="
           ls -la android/app/src/main/kotlin/com/smartstorage/smart_storage_compressor/
 
-      - name: Run Flutter Tests
-        run: flutter test
-
       - name: Install Dependencies
         run: flutter pub get
+
+      - name: Run Flutter Tests
+        run: flutter test
 
       - name: Build Android Debug APK
         run: flutter build apk --debug --android-skip-build-dependency-validation
