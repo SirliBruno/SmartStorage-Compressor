@@ -24,7 +24,7 @@ if (flutterVersionName == null) {
 
 android {
     namespace "com.smartstorage.smart_storage_compressor"
-    compileSdk 35
+    compileSdk 36
     ndkVersion flutter.ndkVersion
 
     compileOptions {
