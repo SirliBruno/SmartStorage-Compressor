@@ -31,19 +31,35 @@ jobs:
       - name: Configure Android Project Scaffold
         run: |
           mkdir -p /tmp/backup/kotlin
-          cp -r android/app/src/main/kotlin/* /tmp/backup/kotlin/
+          cp -r android/app/src/main/kotlin/com/smartstorage/smart_storage_compressor/* /tmp/backup/kotlin/
           cp android/app/src/main/AndroidManifest.xml /tmp/backup/AndroidManifest.xml
+          cp android/app/build.gradle /tmp/backup/build.gradle
           rm -rf android
           flutter create --platforms=android --org com.smartstorage .
           cp /tmp/backup/AndroidManifest.xml android/app/src/main/AndroidManifest.xml
-          mkdir -p android/app/src/main/kotlin/com/smartstorage/compressor
-          cp -r /tmp/backup/kotlin/* android/app/src/main/kotlin/com/smartstorage/compressor/
+          cp /tmp/backup/build.gradle android/app/build.gradle
+          mkdir -p android/app/src/main/kotlin/com/smartstorage/smart_storage_compressor
+          cp -f /tmp/backup/kotlin/* android/app/src/main/kotlin/com/smartstorage/smart_storage_compressor/
+          echo "=== Verified Kotlin Files ==="
+          ls -la android/app/src/main/kotlin/com/smartstorage/smart_storage_compressor/
+
+      - name: Run Flutter Tests
+        run: flutter test
 
       - name: Install Dependencies
         run: flutter pub get
 
       - name: Build Android Debug APK
         run: flutter build apk --debug --android-skip-build-dependency-validation
+
+      - name: Verify APK Integrity & Native MethodChannel
+        run: |
+          mkdir -p /tmp/apk_verify
+          unzip -q build/app/outputs/flutter-apk/app-debug.apk -d /tmp/apk_verify
+          echo "Checking for MediaCodec and video_compression in DEX..."
+          grep -a "video_compression" /tmp/apk_verify/classes*.dex || (echo "FATAL: video_compression MethodChannel missing in APK DEX!" && exit 1)
+          grep -a "MediaCodecVideoCompressor" /tmp/apk_verify/classes*.dex || (echo "FATAL: MediaCodecVideoCompressor missing in APK DEX!" && exit 1)
+          echo "DEX verification PASSED: Native hardware engine successfully packaged in MainActivity!"
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4

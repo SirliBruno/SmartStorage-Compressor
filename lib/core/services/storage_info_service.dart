@@ -42,7 +42,7 @@ class SystemStorageInfoService implements StorageInfoService {
         // we keep isAvailable accurate rather than fabricating fake 128GB numbers.
       }
       return SystemStorageInfo.unavailable;
-    } catch (e, stack) {
+    } catch (e) {
       AppLogger.warn('System storage metrics query not supported on this platform: $e');
       return SystemStorageInfo.unavailable;
     }

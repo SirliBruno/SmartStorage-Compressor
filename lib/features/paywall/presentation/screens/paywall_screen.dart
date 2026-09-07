@@ -40,7 +40,7 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
 
   void _showExitIntentDialog() {
     final l10n = context.l10n;
-    showDialog(
+    showDialog<void>(
       context: context,
       barrierDismissible: false,
       builder: (dialogCtx) => AlertDialog(

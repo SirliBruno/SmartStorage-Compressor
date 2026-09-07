@@ -1,4 +1,4 @@
-﻿package com.smartstorage.compressor
+package com.smartstorage.smart_storage_compressor
 
 import android.os.Handler
 import android.os.Looper

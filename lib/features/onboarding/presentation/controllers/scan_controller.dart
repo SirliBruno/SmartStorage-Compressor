@@ -82,7 +82,7 @@ class ScanNotifier extends StateNotifier<QuickScanState> {
           );
         }
       },
-      onError: (error) {
+      onError: (Object error) {
         state = state.copyWith(
           status: ScanStatus.error,
           errorMessage: error.toString(),
