@@ -14,6 +14,10 @@ abstract class AppLogger {
     developer.log('[WARN] $message', name: 'SmartStorage');
   }
 
+  static void warning(String message, [Object? error, StackTrace? stackTrace]) {
+    developer.log('[WARN] $message', name: 'SmartStorage', error: error, stackTrace: stackTrace);
+  }
+
   static void error(String message, [Object? error, StackTrace? stackTrace]) {
     developer.log(
       '[ERROR] $message',

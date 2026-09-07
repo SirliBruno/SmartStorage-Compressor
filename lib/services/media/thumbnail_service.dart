@@ -57,8 +57,8 @@ class ThumbnailService {
     } catch (e, stack) {
       AppLogger.warning(
         'Thumbnail extraction failed for asset ${asset.id}: $e',
-        error: e,
-        stackTrace: stack,
+        e,
+        stack,
       );
       completer.complete(null);
       return null;

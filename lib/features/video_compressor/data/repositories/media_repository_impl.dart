@@ -66,7 +66,7 @@ class MediaRepositoryImpl implements MediaRepository {
       AppLogger.info('Successfully parsed ${videos.length} videos. Largest: ${videos.isNotEmpty ? videos.first.formattedSize : "0 B"}');
       return videos;
     } catch (e, stack) {
-      AppLogger.error('Error fetching videos from media repository: $e', error: e, stackTrace: stack);
+      AppLogger.error('Error fetching videos from media repository: $e', e, stack);
       return [];
     }
   }
@@ -99,7 +99,7 @@ class MediaRepositoryImpl implements MediaRepository {
         quality: quality,
       );
     } catch (e, stack) {
-      AppLogger.warning('Failed loading thumbnail for $assetId: $e', error: e, stackTrace: stack);
+      AppLogger.warning('Failed loading thumbnail for $assetId: $e', e, stack);
       return null;
     }
   }
@@ -114,7 +114,7 @@ class MediaRepositoryImpl implements MediaRepository {
       _entityCache[assetId] = entity;
       return await VideoMetadataService.inspectAsset(entity);
     } catch (e, stack) {
-      AppLogger.warning('Failed to get video by ID $assetId: $e', error: e, stackTrace: stack);
+      AppLogger.warning('Failed to get video by ID $assetId: $e', e, stack);
       return null;
     }
   }
@@ -129,7 +129,7 @@ class MediaRepositoryImpl implements MediaRepository {
       final file = await entity.file;
       return file?.path;
     } catch (e, stack) {
-      AppLogger.warning('Failed to resolve file path for $assetId: $e', error: e, stackTrace: stack);
+      AppLogger.warning('Failed to resolve file path for $assetId: $e', e, stack);
       return null;
     }
   }

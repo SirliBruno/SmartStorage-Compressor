@@ -87,7 +87,7 @@ class VideoLibraryNotifier extends StateNotifier<VideoLibraryState> {
 
     try {
       // 1. Verify media library permissions
-      final permission = await _permissionService.checkPermission();
+      final permission = await _permissionService.checkMediaPermission();
       if (permission == MediaPermissionState.denied) {
         state = state.copyWith(status: VideoLibraryStatus.permissionDenied);
         return;

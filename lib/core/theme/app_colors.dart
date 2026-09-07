@@ -42,4 +42,11 @@ abstract class AppColors {
   static const Color goldPro = Color(0xFFF59E0B);
   static const Color goldProContainer = Color(0xFF78350F);
   static const Color overlayDark = Color(0xCC000000);
+
+  // Convenient Aliases
+  static const Color cardBackground = surfaceElevated;
+  static const Color cardHighlight = surfaceHighlight;
+  static const Color border = borderSubtle;
+  static const Color accentCyan = secondary;
+  static const Color accentOrange = goldPro;
 }

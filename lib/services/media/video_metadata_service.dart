@@ -64,7 +64,7 @@ class VideoMetadataService {
         creationDate: asset.createDateTime,
       );
     } catch (e, stack) {
-      AppLogger.error('Failed inspecting asset metadata ${asset.id}: $e', error: e, stackTrace: stack);
+      AppLogger.error('Failed inspecting asset metadata ${asset.id}: $e', e, stack);
       return null;
     }
   }

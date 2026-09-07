@@ -87,4 +87,21 @@ abstract class AppTypography {
       color: AppColors.textTertiary,
     ),
   );
+
+  // Static Getters
+  static TextStyle get displayLarge => darkTextTheme.displayLarge!;
+  static TextStyle get headlineLarge => darkTextTheme.headlineLarge!;
+  static TextStyle get headlineMedium => darkTextTheme.headlineMedium!;
+  static TextStyle get headlineSmall => darkTextTheme.titleLarge!;
+  static TextStyle get titleLarge => darkTextTheme.titleLarge!;
+  static TextStyle get titleMedium => darkTextTheme.titleMedium!;
+  static TextStyle get titleSmall => darkTextTheme.titleSmall!;
+  static TextStyle get bodyLarge => darkTextTheme.bodyLarge!;
+  static TextStyle get bodyMedium => darkTextTheme.bodyMedium!;
+  static TextStyle get bodySmall => darkTextTheme.bodySmall!;
+  static TextStyle get caption => darkTextTheme.bodySmall!;
+  static TextStyle get labelLarge => darkTextTheme.labelLarge!;
+  static TextStyle get labelMedium => darkTextTheme.labelMedium!;
+  static TextStyle get labelSmall => darkTextTheme.labelSmall!;
 }
+
