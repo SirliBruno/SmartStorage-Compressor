@@ -22,21 +22,18 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Set up Gradle 8.5
-        uses: gradle/actions/setup-gradle@v3
-        with:
-          gradle-version: 8.5
-
-      - name: Generate Gradle Wrapper
-        run: |
-          cd android
-          gradle wrapper --gradle-version 8.5
-
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
           cache: true
+
+      - name: Configure Android Project Scaffold
+        run: |
+          mkdir -p /tmp/backup
+          cp android/app/src/main/AndroidManifest.xml /tmp/backup/AndroidManifest.xml
+          flutter create --platforms=android --org com.smartstorage .
+          cp /tmp/backup/AndroidManifest.xml android/app/src/main/AndroidManifest.xml
 
       - name: Install Dependencies
         run: flutter pub get
