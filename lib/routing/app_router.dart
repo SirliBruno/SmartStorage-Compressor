@@ -8,7 +8,9 @@ import '../features/video_compressor/presentation/screens/video_picker_screen.da
 import '../features/video_compressor/presentation/screens/compression_prepare_screen.dart';
 import '../features/video_compressor/presentation/screens/compression_screen.dart';
 import '../features/video_compressor/domain/models/compression_preset.dart';
+import '../features/video_compressor/domain/models/compression_session.dart';
 import '../features/video_compressor/domain/models/video_asset.dart';
+import '../features/video_compressor/presentation/screens/compression_comparison_screen.dart';
 import '../features/screenshot_cleaner/presentation/screens/swipe_cleaner_screen.dart';
 import '../features/paywall/presentation/screens/paywall_screen.dart';
 import '../features/settings/presentation/screens/settings_screen.dart';
@@ -70,6 +72,16 @@ GoRouter createAppRouter({String initialLocation = '/onboarding'}) {
         },
       ),
       GoRoute(
+        path: '/video-compressor/compare',
+        builder: (context, state) {
+          final session = state.extra as CompressionSession?;
+          if (session != null) {
+            return CompressionComparisonScreen(session: session);
+          }
+          return const VideoPickerScreen();
+        },
+      ),
+      GoRoute(
         path: '/compressor',
         builder: (context, state) => const VideoPickerScreen(),
       ),
@@ -91,6 +103,16 @@ GoRouter createAppRouter({String initialLocation = '/onboarding'}) {
               preset: (extra['preset'] as CompressionPreset?) ?? CompressionPreset.whatsappFast,
               customTargetSizeBytes: extra['customTargetSizeBytes'] as int?,
             );
+          }
+          return const VideoPickerScreen();
+        },
+      ),
+      GoRoute(
+        path: '/compressor/compare',
+        builder: (context, state) {
+          final session = state.extra as CompressionSession?;
+          if (session != null) {
+            return CompressionComparisonScreen(session: session);
           }
           return const VideoPickerScreen();
         },

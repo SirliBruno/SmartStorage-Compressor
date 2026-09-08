@@ -102,6 +102,13 @@
   "replaceWarning": "This will delete the bloated original from your camera roll after saving the compressed version.",
   "saveSuccess": "Video saved successfully to your gallery",
   "replaceSuccess": "Original replaced with compressed copy",
+  "replaceConfirmTitle": "Replace Original Video?",
+  "replaceConfirmBody": "The bloated original video will be replaced with the compressed version in your gallery.",
+  "compressAnotherVideo": "Compress Another Video",
+  "done": "Done",
+  "savingToGallery": "Saving to gallery...",
+  "replacingOriginal": "Replacing original safely...",
+  "freedSpaceSuccess": "Freed {size} of storage space.",
 
   "screenshotCleanerTitle": "Screenshot Cleaner",
   "swipeInstructions": "Swipe Right to Keep • Swipe Left to Delete",

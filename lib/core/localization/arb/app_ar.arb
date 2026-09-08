@@ -102,6 +102,13 @@
   "replaceWarning": "سيتم حذف الفيديو الأصلي الضخم من ألبوم الكاميرا بعد حفظ النسخة الجديدة بنجاح.",
   "saveSuccess": "تم حفظ الفيديو بنجاح في ألبوم الجهاز",
   "replaceSuccess": "تم استبدال الفيديو الأصلي بالنسخة المضغوطة بأمان",
+  "replaceConfirmTitle": "استبدال الفيديو الأصلي؟",
+  "replaceConfirmBody": "سيتم استبدال النسخة الأصلية بالنسخة المضغوطة في ألبوم الكاميرا.",
+  "compressAnotherVideo": "ضغط فيديو آخر",
+  "done": "تم",
+  "savingToGallery": "جاري الحفظ...",
+  "replacingOriginal": "جاري الاستبدال بأمان...",
+  "freedSpaceSuccess": "وفّرت {size} من مساحة التخزين.",
 
   "screenshotCleanerTitle": "منظم ومفرغ لقطات الشاشة",
   "swipeInstructions": "اسحب لليمين للإبقاء • اسحب لليسار للحذف",

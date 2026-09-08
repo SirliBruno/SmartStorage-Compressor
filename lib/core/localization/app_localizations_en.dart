@@ -320,6 +320,30 @@ class AppLocalizationsEn extends AppLocalizations {
   String get replaceSuccess => 'Original replaced with compressed copy';
 
   @override
+  String get replaceConfirmTitle => 'Replace Original Video?';
+
+  @override
+  String get replaceConfirmBody =>
+      'The bloated original video will be replaced with the compressed version in your gallery.';
+
+  @override
+  String get compressAnotherVideo => 'Compress Another Video';
+
+  @override
+  String get done => 'Done';
+
+  @override
+  String get savingToGallery => 'Saving to gallery...';
+
+  @override
+  String get replacingOriginal => 'Replacing original safely...';
+
+  @override
+  String freedSpaceSuccess(Object size) {
+    return 'Freed $size of storage space.';
+  }
+
+  @override
   String get screenshotCleanerTitle => 'Screenshot Cleaner';
 
   @override

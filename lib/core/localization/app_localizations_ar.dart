@@ -322,6 +322,30 @@ class AppLocalizationsAr extends AppLocalizations {
       'تم استبدال الفيديو الأصلي بالنسخة المضغوطة بأمان';
 
   @override
+  String get replaceConfirmTitle => 'استبدال الفيديو الأصلي؟';
+
+  @override
+  String get replaceConfirmBody =>
+      'سيتم استبدال النسخة الأصلية بالنسخة المضغوطة في ألبوم الكاميرا.';
+
+  @override
+  String get compressAnotherVideo => 'ضغط فيديو آخر';
+
+  @override
+  String get done => 'تم';
+
+  @override
+  String get savingToGallery => 'جاري الحفظ...';
+
+  @override
+  String get replacingOriginal => 'جاري الاستبدال بأمان...';
+
+  @override
+  String freedSpaceSuccess(Object size) {
+    return 'وفّرت $size من مساحة التخزين.';
+  }
+
+  @override
   String get screenshotCleanerTitle => 'منظم ومفرغ لقطات الشاشة';
 
   @override

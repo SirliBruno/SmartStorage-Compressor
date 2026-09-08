@@ -656,6 +656,48 @@ abstract class AppLocalizations {
   /// **'Original replaced with compressed copy'**
   String get replaceSuccess;
 
+  /// No description provided for @replaceConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Replace Original Video?'**
+  String get replaceConfirmTitle;
+
+  /// No description provided for @replaceConfirmBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The bloated original video will be replaced with the compressed version in your gallery.'**
+  String get replaceConfirmBody;
+
+  /// No description provided for @compressAnotherVideo.
+  ///
+  /// In en, this message translates to:
+  /// **'Compress Another Video'**
+  String get compressAnotherVideo;
+
+  /// No description provided for @done.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get done;
+
+  /// No description provided for @savingToGallery.
+  ///
+  /// In en, this message translates to:
+  /// **'Saving to gallery...'**
+  String get savingToGallery;
+
+  /// No description provided for @replacingOriginal.
+  ///
+  /// In en, this message translates to:
+  /// **'Replacing original safely...'**
+  String get replacingOriginal;
+
+  /// No description provided for @freedSpaceSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Freed {size} of storage space.'**
+  String freedSpaceSuccess(Object size);
+
   /// No description provided for @screenshotCleanerTitle.
   ///
   /// In en, this message translates to:

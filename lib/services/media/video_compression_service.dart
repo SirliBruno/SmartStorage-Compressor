@@ -103,6 +103,9 @@ class PlatformChannelVideoCompressionService implements VideoCompressionService 
           compressedSize: compressedSize,
           duration: Duration(milliseconds: durationMs),
           processingTime: stopwatch.elapsed,
+          targetResolutionWidth: request.targetResolutionWidth,
+          targetResolutionHeight: request.targetResolutionHeight,
+          targetCodec: request.useHevc ? 'HEVC (H.265)' : 'H.264 (AVC)',
         );
       } else {
         final isCancelled = result['isCancelled'] as bool? ?? false;

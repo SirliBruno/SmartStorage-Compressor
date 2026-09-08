@@ -88,6 +88,8 @@ class VideoLibraryNotifier extends StateNotifier<VideoLibraryState> {
     try {
       // 1. Verify media library permissions
       final permission = await _permissionService.checkMediaPermission();
+      if (!mounted) return;
+
       if (permission == MediaPermissionState.denied) {
         state = state.copyWith(status: VideoLibraryStatus.permissionDenied);
         return;
@@ -100,6 +102,7 @@ class VideoLibraryNotifier extends StateNotifier<VideoLibraryState> {
 
       // 2. Fetch videos from local storage, sorted by file size descending
       final videos = await _mediaRepository.getVideos(sortByLargest: true);
+      if (!mounted) return;
 
       if (videos.isEmpty) {
         state = state.copyWith(
@@ -115,6 +118,7 @@ class VideoLibraryNotifier extends StateNotifier<VideoLibraryState> {
         );
       }
     } catch (e, stack) {
+      if (!mounted) return;
       AppLogger.error('Failed to load video library: $e', e, stack);
       state = state.copyWith(
         status: VideoLibraryStatus.error,

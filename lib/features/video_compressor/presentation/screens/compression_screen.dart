@@ -8,6 +8,7 @@ import '../../../../core/theme/app_typography.dart';
 import '../../../../core/widgets/app_button.dart';
 import '../../../../core/widgets/app_card.dart';
 import '../../domain/models/compression_preset.dart';
+import '../../domain/models/compression_session.dart';
 import '../../domain/models/compression_status.dart';
 import '../../domain/models/video_asset.dart';
 import '../controllers/compression_controller.dart';
@@ -302,15 +303,37 @@ class _CompressionScreenState extends ConsumerState<CompressionScreen> {
 
         const Spacer(),
 
-        // Continue Button
+        // Primary: Open Interactive Comparison & Save Flow
         AppButton(
-          text: l10n.continueButton,
+          text: l10n.comparisonTitle,
           onPressed: () {
-            ref.read(videoLibraryProvider.notifier).loadVideos(forceRefresh: true);
-            context.pop();
+            if (result != null) {
+              final session = CompressionSession.fromResult(
+                originalAsset: widget.video,
+                result: result,
+              );
+              context.push('/video-compressor/compare', extra: session);
+            }
           },
         ),
-        const SizedBox(height: 16),
+        const SizedBox(height: 10),
+
+        // Secondary: Done / Back to Library
+        SizedBox(
+          width: double.infinity,
+          height: 48,
+          child: TextButton(
+            onPressed: () {
+              ref.read(videoLibraryProvider.notifier).loadVideos(forceRefresh: true);
+              context.pop();
+            },
+            child: Text(
+              l10n.done,
+              style: AppTypography.bodyMedium.copyWith(color: AppColors.textSecondary),
+            ),
+          ),
+        ),
+        const SizedBox(height: 12),
       ],
     );
   }

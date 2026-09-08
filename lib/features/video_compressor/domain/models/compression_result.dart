@@ -47,6 +47,9 @@ class CompressionResult {
   final int? compressedSize;
   final Duration? duration;
   final Duration? processingTime;
+  final int? targetResolutionWidth;
+  final int? targetResolutionHeight;
+  final String? targetCodec;
   final String? errorCode;
   final String? errorMessage;
 
@@ -58,6 +61,9 @@ class CompressionResult {
     this.compressedSize,
     this.duration,
     this.processingTime,
+    this.targetResolutionWidth,
+    this.targetResolutionHeight,
+    this.targetCodec,
     this.errorCode,
     this.errorMessage,
   });
@@ -70,6 +76,9 @@ class CompressionResult {
     required int compressedSize,
     required Duration duration,
     required Duration processingTime,
+    int? targetResolutionWidth,
+    int? targetResolutionHeight,
+    String? targetCodec,
   }) {
     return CompressionResult(
       success: true,
@@ -79,6 +88,9 @@ class CompressionResult {
       compressedSize: compressedSize,
       duration: duration,
       processingTime: processingTime,
+      targetResolutionWidth: targetResolutionWidth,
+      targetResolutionHeight: targetResolutionHeight,
+      targetCodec: targetCodec,
     );
   }
 
@@ -90,6 +102,9 @@ class CompressionResult {
     Duration duration = Duration.zero,
     Duration processingTime = Duration.zero,
     String originalPath = '',
+    int? targetResolutionWidth,
+    int? targetResolutionHeight,
+    String? targetCodec,
   }) {
     return CompressionResult(
       success: true,
@@ -99,6 +114,9 @@ class CompressionResult {
       compressedSize: compressedBytes,
       duration: duration,
       processingTime: processingTime,
+      targetResolutionWidth: targetResolutionWidth,
+      targetResolutionHeight: targetResolutionHeight,
+      targetCodec: targetCodec,
     );
   }
 
@@ -154,4 +172,13 @@ class CompressionResult {
 
   /// Formatted string of percentage saved (e.g. "75.0%").
   String get savedFormatted => '${savedPercentage.toStringAsFixed(1)}%';
+
+  /// Target resolution string if known (e.g. 1280x720)
+  String? get compressedResolution =>
+      (targetResolutionWidth != null && targetResolutionHeight != null)
+          ? '${targetResolutionWidth}x$targetResolutionHeight'
+          : null;
+
+  /// Target codec string if known
+  String? get codec => targetCodec;
 }

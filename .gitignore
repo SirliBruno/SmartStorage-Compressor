@@ -45,3 +45,5 @@ app.*.map.json
 **/ios/Flutter/flutter_export_environment.sh
 **/ios/Flutter/ephemeral/
 **/GeneratedPluginRegistrant.*
+*.zip
+apk_extracted_verified/
